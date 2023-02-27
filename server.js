@@ -8,8 +8,7 @@ import categoryRoute from './routes/categoryRoute.js'
 import productRoutes from './routes/productRoutes.js'
 import cors from 'cors'
 import path from 'path'
-import { fileURLToPath } from 'url;
-
+import { fileURLToPath } from 'url';
 
 const app = express()
 
@@ -19,7 +18,7 @@ dotenv.config()
 // database config
 connectDB(); 
 
-// es module fix
+// esmodule fix
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -34,9 +33,8 @@ app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/category', categoryRoute)
 app.use('/api/v1/product', productRoutes)
 
-
-// static files
-app.get('*', function(req, res){
+// rest api
+app.use('*', function(req, res){
     res.sendFile(path.join(__dirname, './client/build/index.html'))
 })
 
