@@ -23,20 +23,15 @@ connectDB();
 app.use(cors())
 app.use(express.json())
 app.use(morgan('dev'))
+app.use(express.static(path.join(__dirname, './client/build')))
 
 // routes
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/category', categoryRoute)
 app.use('/api/v1/product', productRoutes)
 
-// rest api
-app.get('/', (req, res) => {
-    res.send(`<h1>This is ecommerce website and this master applications..</h1>`);
-})
 
 // static files
-app.use(express.static(path.join(__dirname, './client/build')))
-
 app.get('*', function(req, res){
     res.sendFile(path.join(__dirname, './client/build/index.html'))
 })
